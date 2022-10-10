@@ -1,0 +1,30 @@
+const readline = require ('readline');
+const cmd = readline.createInterface(process.stdin, process.stdout);
+
+ var price = 8000;
+ oprational = 0.045 * process;
+ var reply = "y";
+
+ do{
+    cmd.question('Berapa Jarak yang ditempuh?', (ans) =>{
+        if (ans <= 2){
+            console.log('Total Ongkos Kirim : ' + new Intl.Numberformat('id=ID', {style: 'currency' , currency : 'IDR'}).format(price));
+
+            console.log('Biaya layanan Sebesar : ' + new Intl.Numberformat('id=ID', {style: 'currency' , currency : 'IDR'}).format(price))
+
+            cmd.close();
+        }
+
+        else if(ans >= 3){
+            const discount = 5000;
+            final_price = price + (discount * (ans-2))
+
+            oprationals = 0.045 * price;
+            console.log('Total Biaya Layanan : ' + new Intl.Numberforma('id=ID', {style: 'currency' , currency : 'IDR'}).format(price));
+
+            cmd.close();
+        }
+    })
+ }
+
+ while(reply == 'y');
