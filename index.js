@@ -6,6 +6,7 @@ const cmd = readline.createInterface(process.stdin, process.stdout);
 var price = 8000;
 const oprational = 0.045 * price;
 var reply =  true;
+var discount = 5000;
 const error = () => {
     cmd.close()
   }
@@ -18,19 +19,15 @@ const count = () => {
           console.log('Total Ongkos Kirim  :' + new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(price))
           console.log('Biaya Layanan Sebesar : ' + new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(oprational))
 
-        //   cmd.close()
         }
 
         else if (ans >= 3) {
-          price
-          discount = 5000;
           final_price = price + (discount * (ans - 2))
           console.log('Total Ongkos Kirim  :' + new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(final_price))
 
           oprationals = 0.045 * final_price;
           console.log('Total Biaya Layanan : ' + new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(oprationals))
 
-        //   cmd.close();
         }
         resolve(true)
 
@@ -44,14 +41,13 @@ const startApp = async() => {
     while(reply) {
       try {
         const data = await count();
-        running = data;
+        reply = data;
         } catch(error) {
           console.log("Terimakasih sudah menggunakan aplikasi ini");
-          running = false;
+          reply = false;
       }
     }
   }
 
   startApp();
 
-//code di line 32 ga ke eskusi
