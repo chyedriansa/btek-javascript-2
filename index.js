@@ -5,19 +5,17 @@ const cmd = readline.createInterface(process.stdin, process.stdout);
 
 var price = 8000;
 const oprational = 0.045 * price;
-let reply =  true;
+var reply =  true;
 const error = () => {
     cmd.close()
   }
-const start = async() => {
-  let reply = true;
 
-  while(reply){
-    try{
+const count = () => {
+    return new Promise ((resolve, reject) => {
         cmd.question(' Berapa Jarak yang ditempuh? ', (ans) => {
         if (ans <= 2) {
 
-          console.log('Biaya Ongkos Kirim :' + new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(price))
+          console.log('Total Ongkos Kirim  :' + new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(price))
           console.log('Biaya Layanan Sebesar : ' + new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(oprational))
 
         //   cmd.close()
@@ -34,16 +32,26 @@ const start = async() => {
 
         //   cmd.close();
         }
+        resolve(true)
 
-    })
+    });
 
-    }
-    catch(error){
-        console.log("DONE!!!");
+})
+}
+const startApp = async() => {
+    let reply = true;
+
+    while(reply) {
+      try {
+        const data = await count();
+        running = data;
+        } catch(error) {
+          console.log("Terimakasih sudah menggunakan aplikasi ini");
+          running = false;
+      }
     }
   }
-}
-start();
-cmd.question('apakah anda ingin  mengulang?', (reply))
+
+  startApp();
 
 //code di line 32 ga ke eskusi
